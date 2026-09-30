@@ -22,16 +22,6 @@ Módulo periférico responsable de la comunicación con la memoria flash SPI de 
 
 ##############################################################################################################################
 
-# README — Protocolo SPI para memorias Flash
-
-**Equipo:** spi_flash  
-**Responsables:** @camahechag-bars @jcanizalez16 @edfrancos  
-**Fecha de inicio:** 2026-09-29  
-**Fecha de entrega:** 2026-10-06  
-**Directorio:** `cores/spi_flash/diagramas`
-
----
-
 ## 1. Introducción
 
 Este documento describe el protocolo **SPI (Serial Peripheral Interface)** aplicado a **memorias Flash**, tal como se trabajó en clase. Incluye forma física, explicación del protocolo, comandos disponibles, uso práctico de `READ` y `FAST READ`, y las preguntas resueltas que quedaron pendientes.
