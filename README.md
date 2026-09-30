@@ -18,4 +18,4 @@ Módulo periférico responsable de la comunicación con la memoria flash SPI de 
 
 - Jhon Dairon Canizalez Arias
 - Edwin Franco Sanchez
-- 
+- Carlos Alfonso Mahecha Gonzalez
