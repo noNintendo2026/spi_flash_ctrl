@@ -50,7 +50,7 @@ SPI es un protocolo de comunicación **sincrónico, serie y full-duplex**. Un di
 - El **maestro genera el reloj**. El esclavo nunca lo genera.
 - En SPI **la velocidad no es crítica** para la integridad del dato. A diferencia de I2S, se puede ir más rápido o más lento sin que el dato se corrompa, siempre que se respeten los tiempos mínimos del chip.
 
-> Cita de clase: *"En un SPI, si es lento, obviamente… Puede que se demore más, pero puedo mandar los datos. Si eso cumple restricciones temporales, no importa."*
+<!-- > Cita de clase: *"En un SPI, si es lento, obviamente… Puede que se demore más, pero puedo mandar los datos. Si eso cumple restricciones temporales, no importa."* -->
 
 ### 2.3 Modos SPI (CPOL / CPHA)
 
