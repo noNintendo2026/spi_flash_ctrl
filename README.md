@@ -121,7 +121,7 @@ flowchart LR
 Toda transacción con la Flash sigue este patrón:
 
 ```
-CS baja  →  [Comando]  →  [Dirección]  →  [Dummy]  →  [Datos]  →  CS sube
+CS baja  →  [Comando]  →  [Dirección]  →  [Dummy (solo en algunos comandos)]  →  [Datos]  →  CS sube
 ```
 
 - **Comando:** 1 byte que dice qué hacer.
