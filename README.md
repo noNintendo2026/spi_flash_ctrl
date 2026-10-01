@@ -134,9 +134,9 @@ CS baja  →  [Comando]  →  [Dirección]  →  [Dummy (solo en algunos comando
 - **CS baja** al inicio de la transacción.
 - El maestro genera el reloj.
 - **El dato cambia en un flanco y se lee en el otro.**
-- Regla de oro vista en clase:
+<!-- - Regla de oro vista en clase:
 
-> *"No puedo tener cambios de la señal de dato al mismo tiempo que el flanco de lectura. Siempre que el clock cambia, el dato tiene que estar estable."*
+> *"No puedo tener cambios de la señal de dato al mismo tiempo que el flanco de lectura. Siempre que el clock cambia, el dato tiene que estar estable."*-->
 
 ---
 
