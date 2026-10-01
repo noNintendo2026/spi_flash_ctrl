@@ -355,14 +355,16 @@ Si vas a leer 512 bytes consecutivos, manda la dirección **una sola vez** y sig
 ---
 
 ## 10. Diagramas incluidos en este directorio
-<!-- Este texto está oculto. Solo lo verás en la consola de edición -->
+<!-- Este texto está oculto. Solo lo verás en la consola de edición
 | Archivo | Descripción |
 |---------|-------------|
 | `read_03h.png` | Trama del comando READ |
 | `fast_read_0bh.png` | Trama del comando FAST READ |
 | `conexion_fpga_flash.png` | Diagrama físico FPGA ↔ Flash |
 | `comparacion_tiempos.png` | Gráfica READ vs FAST READ |
-| `comandos_spi_flash.png` | Tabla resumen de comandos |
+| `comandos_spi_flash.png` | Tabla resumen de comandos | -->
+
+https://github.com/noNintendo2026/spi_flash_ctrl/tree/main/cores/spi_flash/diagramas
 
 
 ---
