@@ -369,7 +369,7 @@ https://github.com/noNintendo2026/spi_flash_ctrl/tree/main/cores/spi_flash/diagr
 
 ---
 
-## 11. Dependencias y enlaces
+<!-- ## 11. Dependencias y enlaces
 
 - Issue [#1](https://github.com/noNintendo2026/spi_flash_ctrl/issues/1)
 - Issue [#2](https://github.com/noNintendo2026/spi_flash_ctrl/issues/2)
@@ -398,5 +398,5 @@ https://github.com/noNintendo2026/spi_flash_ctrl/tree/main/cores/spi_flash/diagr
 
 ---
 
-**Última actualización:** 2026-10-06  
+**Última actualización:** 2026-10-06 -->  
 **Autores:** @camahechag-bars, @jcanizalez16, @edfrancos
