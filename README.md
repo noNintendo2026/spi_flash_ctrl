@@ -24,7 +24,7 @@ Módulo periférico responsable de la comunicación con la memoria flash SPI de 
 
 ## 1. Introducción
 
-Este documento describe el protocolo **SPI (Serial Peripheral Interface)** aplicado a **memorias Flash**, tal como se trabajó en clase. Incluye forma física, explicación del protocolo, comandos disponibles, uso práctico de `READ` y `FAST READ`, y las preguntas resueltas que quedaron pendientes.
+Este documento describe el protocolo **SPI (Serial Peripheral Interface)** aplicado a **memorias Flash**. Incluye forma física, explicación del protocolo, comandos disponibles y uso práctico de `READ` y `FAST READ`.
 
 > **Nota:** Los diagramas de trama y conexión física están en este mismo directorio. Ver la sección de enlaces al final.
 
@@ -355,7 +355,7 @@ Si vas a leer 512 bytes consecutivos, manda la dirección **una sola vez** y sig
 ---
 
 ## 10. Diagramas incluidos en este directorio
-
+<!-- Este texto está oculto. Solo lo verás en la consola de edición -->
 | Archivo | Descripción |
 |---------|-------------|
 | `read_03h.png` | Trama del comando READ |
@@ -364,7 +364,6 @@ Si vas a leer 512 bytes consecutivos, manda la dirección **una sola vez** y sig
 | `comparacion_tiempos.png` | Gráfica READ vs FAST READ |
 | `comandos_spi_flash.png` | Tabla resumen de comandos |
 
-> Los diagramas se generan con [WaveDrom](https://wavedrom.com) siguiendo la recomendación del profesor de usar herramientas para hacer las formas de onda.
 
 ---
 
