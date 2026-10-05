@@ -50,9 +50,9 @@ Este protocolo cuenta con 4 terminales de conexion
 
 - **Protocolo sincrónico:** los datos se leen en flancos del reloj, las configuraciones del franco de lectura y el estado base del reloj dan por resultado 4 configuraciones para el protocolo, la cual es dada por el modulo especifico de memoria FLASH. 
 - **Capacidad full-duplex:** El protocolo soporta comunicación bidireccional simultanea, esto gracias a que MOSI y MISO son pines fisicamente difentes.
-- **Generacion del pulso del reloj **:Para este protocolo, la señal del reloj siempre es generada por el maestro y nunca por el esclavo.
--  **Estabilidad en los datos:** al momento de que se lee un dado, esto dado por el flanco de lectura, la informacion debe ser estable, esto en la practica consiste en que en el momento en el que ocurre el cambio en el reloj, el dato no debe cambiar, tipicamente esto es que el periodo temporal de un dado es mayor al del reloj, o se encuentra desfasado con respecto a este.
--**Velocidad de transmision:** En este protocolo, la velocidad de trasmision de los datos no afecta su funcionamiento, siempre y cuando todas las señales se trasmitan a la misma velocidad, se preserve la estabilidad de los datos transmitidos y se respeten los tiempos de operacion de la memoria flash.
+- **Generacion del pulso del reloj:** Para este protocolo, la señal del reloj siempre es generada por el maestro y nunca por el esclavo.
+- **Estabilidad en los datos:** al momento de que se lee un dado, esto dado por el flanco de lectura, la informacion debe ser estable, esto en la practica consiste en que en el momento en el que ocurre el cambio en el reloj, el dato no debe cambiar, tipicamente esto es que el periodo temporal de un dado es mayor al del reloj, o se encuentra desfasado con respecto a este.
+- **Velocidad de transmision:** En este protocolo, la velocidad de trasmision de los datos no afecta su funcionamiento, siempre y cuando todas las señales se trasmitan a la misma velocidad, se preserve la estabilidad de los datos transmitidos y se respeten los tiempos de operacion de la memoria flash.
 
 
 ### 2.3 Modos SPI (CPOL / CPHA)
