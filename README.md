@@ -20,11 +20,11 @@ Módulo periférico responsable de la comunicación con la memoria flash SPI de 
 - Edwin Franco Sanchez
 - Carlos Alfonso Mahecha Gonzalez
 
-##############################################################################################################################
+---
 
 ## 1. Introducción
 
-Este documento describe el protocolo **SPI (Serial Peripheral Interface)** aplicado a **memorias Flash**. Incluye forma física, explicación del protocolo, comandos disponibles y uso práctico de `READ` y `FAST READ`.
+Este documento describe el protocolo **SPI (Serial Peripheral Interface)** aplicado a **memorias Flash**. Incluye forma física, explicación del protocolo, comandos disponibles y uso práctico de los mismos.
 
 > **Nota:** Los diagramas de trama y conexión física están en este mismo directorio. Ver la sección de enlaces al final.
 
@@ -36,6 +36,8 @@ SPI es un protocolo de comunicación **sincrónico, serie y full-duplex**. Un di
 
 ### 2.1 Señales del bus
 
+Este protocolo cuenta con 4 terminales de conexion
+
 | Señal | Nombre completo | Función |
 |-------|-----------------|---------|
 | `SCLK` | Serial Clock | Reloj generado **siempre** por el maestro |
@@ -45,12 +47,13 @@ SPI es un protocolo de comunicación **sincrónico, serie y full-duplex**. Un di
 
 ### 2.2 Características clave
 
-- Es **sincrónico**: los datos se leen en flancos del reloj.
-- Es **full-duplex**: MOSI y MISO pueden trabajar al mismo tiempo.
-- El **maestro genera el reloj**. El esclavo nunca lo genera.
-- En SPI **la velocidad no es crítica** para la integridad del dato. A diferencia de I2S, se puede ir más rápido o más lento sin que el dato se corrompa, siempre que se respeten los tiempos mínimos del chip.
 
-<!-- > Cita de clase: *"En un SPI, si es lento, obviamente… Puede que se demore más, pero puedo mandar los datos. Si eso cumple restricciones temporales, no importa."* -->
+- **Protocolo sincrónico:** los datos se leen en flancos del reloj, las configuraciones del franco de lectura y el estado base del reloj dan por resultado 4 configuraciones para el protocolo, la cual es dada por el modulo especifico de memoria FLASH. 
+- **Capacidad full-duplex:** El protocolo soporta comunicación bidireccional simultanea, esto gracias a que MOSI y MISO son pines fisicamente difentes.
+- **Generacion del pulso del reloj **:Para este protocolo, la señal del reloj siempre es generada por el maestro y nunca por el esclavo.
+-  **Estabilidad en los datos:** al momento de que se lee un dado, esto dado por el flanco de lectura, la informacion debe ser estable, esto en la practica consiste en que en el momento en el que ocurre el cambio en el reloj, el dato no debe cambiar, tipicamente esto es que el periodo temporal de un dado es mayor al del reloj, o se encuentra desfasado con respecto a este.
+-**Velocidad de transmision:** En este protocolo, la velocidad de trasmision de los datos no afecta su funcionamiento, siempre y cuando todas las señales se trasmitan a la misma velocidad, se preserve la estabilidad de los datos transmitidos y se respeten los tiempos de operacion de la memoria flash.
+
 
 ### 2.3 Modos SPI (CPOL / CPHA)
 
