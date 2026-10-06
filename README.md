@@ -218,9 +218,7 @@ sequenceDiagram
 
 **Ilimitada.** Mientras CS esté bajo, la Flash sigue sacando bytes y la dirección interna avanza sola. Al llegar al final, vuelve al inicio (**wrap around**).
 
-<!--> Cita de clase: *"hay que tener cuidado porque ese se sobrecribe… termina a los 64 espacios y vuelve a escribir el primero."* 
-ñ
----
+<!--> Cita de clase: *"hay que tener cuidado porque ese se sobrecribe… termina a los 64 espacios y vuelve a escribir el primer
 
 ## 7. FAST READ (0Bh) paso a paso
 
@@ -315,8 +313,8 @@ CS sube
 ### 8.4 ¿Qué comandos van antes o después?
 
 - **Para leer:** no se necesita comando previo.
-- **Para escribir o borrar:** primero `06h` (Write Enable).
-- **Después de escribir:** revisar con `05h` (Read Status Register) si el chip terminó.
+<!-- **Para escribir o borrar:** primero `06h` (Write Enable).
+- **Después de escribir:** revisar con `05h` (Read Status Register) si el chip terminó.-->
 
 ### 8.5 ¿Qué diferencia hay con I2S?
 
