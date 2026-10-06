@@ -68,10 +68,24 @@ La secuencia general de la comunicación es:
 
 ### 1.6 Estructura interna de la memoria 
 
-Como informacion extra, es necesario comprender como se divide la estructura interna de la memoria flash, ya que esto es importante para entender la funcionalidad de las direcciones que se envia en multiples comandos 
+Como informacion extra, es necesario comprender como se divide la estructura interna de la memoria flash, ya que esto es importante para entender la funcionalidad de las direcciones que se envia en multiples comandos.
 
 
-![Jerarquía de memoria](JERARQUIA%20DE%20MEMORIA.png)
+
+![Estructura de memoria](Estructura_memoria%20.png)
+
+
+Típicamente, estas memorias se dividen en 3 niveles, tal como se muestra en la imagen anterior. La memoria completa tiene una capacidad de 16 MiB, la cual se divide en 256 bloques, cada uno de 64 KB. Cada bloque se divide en 16 sectores, cada uno de 4 KB. Cada sector se vuelve a dividir en 16 paginas, cada una de 256 Bytes y estas ultimas se dividen en los ya mencionados 256 Bytes. Una imagen mas representativa se muestra a continuación.
+
+![Estructura detallada de memoria](Estructura_detallada_de_memoria.png)
+
+
+Las direcciones de memoria que se envian desde el maestro hacia el esclavo se dividen en 4 partes (esto se refiere únicamente a la distribución de la información, las direcciones se envian de forma continua bit tras bit).
+
+![Estrcutura de la direccion enviada](Estructura_direcciones.png)
+
+
+
 
 ---
 
