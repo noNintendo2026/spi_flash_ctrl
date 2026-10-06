@@ -316,11 +316,11 @@ CS sube
 <!-- **Para escribir o borrar:** primero `06h` (Write Enable).
 - **Después de escribir:** revisar con `05h` (Read Status Register) si el chip terminó.-->
 
-### 8.5 ¿Qué diferencia hay con I2S?
+<!--### 8.5 ¿Qué diferencia hay con I2S?
 
 En **I2S** la frecuencia de muestreo sí importa (44.2 kHz, 48 kHz). Si se manda el audio más rápido o más lento, se escucha mal. En **SPI** la velocidad no afecta el dato, solo el tiempo que tarda.
 
-> Cita de clase: *"Es la gran diferencia de protocolos SPI frente a todos los demás: el tiempo acá sí importa [en I2S], en los demás no."*
+> Cita de clase: *"Es la gran diferencia de protocolos SPI frente a todos los demás: el tiempo acá sí importa [en I2S], en los demás no."*-->
 
 ---
 
