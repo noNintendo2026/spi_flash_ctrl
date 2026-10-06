@@ -257,6 +257,9 @@ sequenceDiagram
 | Dummy | (nada) | X (8 ciclos vacíos) |
 | Datos | (no se usa) | D0, D1, D2, D3… |
 
+### 7.4 Formas de onda
+<img width="963" height="323" alt="image" src="https://github.com/user-attachments/assets/1a93cbb5-1190-4d25-bbc6-ec5ee0a16e25" />
+
 ---
 
 ## 8. Preguntas resueltas
