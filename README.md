@@ -26,7 +26,6 @@ Módulo periférico responsable de la comunicación con la memoria flash SPI de 
 
 Este documento describe el protocolo **SPI (Serial Peripheral Interface)** aplicado a **memorias Flash**. Incluye forma física, explicación del protocolo, comandos disponibles y uso práctico de los mismos.
 
-> **Nota:** Los diagramas de trama y conexión física están en este mismo directorio. Ver la sección de enlaces al final.
 
 ---
 
@@ -56,6 +55,8 @@ Este protocolo cuenta con 4 terminales de conexion
 
 
 ### 2.3 Modos SPI (CPOL / CPHA)
+
+Como se dijo anteriormente, el protocolo puede variar entre el baso 
 
 | Modo | CPOL | CPHA | Flanco de muestreo |
 |------|------|------|---------------------|
