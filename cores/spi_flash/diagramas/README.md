@@ -72,7 +72,7 @@ Como informacion extra, es necesario comprender como se divide la estructura int
 
 
 
-![Estructura de memoria](Estructura_memoria%20.png)
+![Estructura de memoria](Estructura_memoria.png)
 
 
 Típicamente, estas memorias se dividen en 3 niveles, tal como se muestra en la imagen anterior. La memoria completa tiene una capacidad de 16 MiB, la cual se divide en 256 bloques, cada uno de 64 KB. Cada bloque se divide en 16 sectores, cada uno de 4 KB. Cada sector se vuelve a dividir en 16 paginas, cada una de 256 Bytes y estas ultimas se dividen en los ya mencionados 256 Bytes. Una imagen mas representativa se muestra a continuación.
