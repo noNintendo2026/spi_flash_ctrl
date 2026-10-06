@@ -65,6 +65,14 @@ La secuencia general de la comunicación es:
 6. Se transmiten o reciben los datos.
 7. `CS` sube al finalizar la transacción.
 
+
+### 1.6 Estructura interna de la memoria 
+
+Como informacion extra, es necesario comprender como se divide la estructura interna de la memoria flash, ya que esto es importante para entender la funcionalidad de las direcciones que se envia en multiples comandos 
+
+
+![Jerarquía de memoria](JERARQUIA%20DE%20MEMORIA.png)
+
 ---
 
 # 2. Comandos de estado y control
@@ -127,7 +135,6 @@ Esta sección presenta los comandos utilizados para modificar el contenido de la
 | ----------- | ------------ | ------------------------ |
 | `02h`       | Page Program | Programa hasta 256 bytes |
 | `20h`       | Sector Erase | Borra un sector de 4 KB  |
-| `52h`       | Block Erase  | Borra un bloque de 32 KB |
 | `D8h`       | Block Erase  | Borra un bloque de 64 KB |
 | `C7h / 60h` | Chip Erase   | Borra toda la memoria    |
 
