@@ -258,7 +258,8 @@ sequenceDiagram
 | Datos | (no se usa) | D0, D1, D2, D3… |
 
 ### 7.4 Formas de onda
-<img width="963" height="323" alt="image" src="https://github.com/user-attachments/assets/1a93cbb5-1190-4d25-bbc6-ec5ee0a16e25" />
+<img width="947" height="275" alt="image" src="https://github.com/user-attachments/assets/5bb560f6-d2a7-4d1f-8647-7cf5705d2ca2" />
+
 
 ---
 
