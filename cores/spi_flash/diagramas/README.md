@@ -156,7 +156,7 @@ Esta sección presenta los comandos utilizados para modificar el contenido de la
 
 #### 4.2.1 Page Program
 
-El comando 0x02 permite escribir en la memoria hasta un total de 256 Bytes, estos se empezaran a escribir a parir de la direccion dada por el maestro, si los datos enviados hacia el esclavo, llegan al final de una pagina, los siguientes es escribiran al inicio de la misma, y no pasaran a la siguiente pagina.
+El comando `0x02` permite escribir en la memoria hasta un total de 256 Bytes, estos se empezaran a escribir a parir de la direccion dada por el maestro, si los datos enviados hacia el esclavo, llegan al final de una pagina, los siguientes es escribiran al inicio de la misma, y no pasaran a la siguiente pagina.
 
 ![Formas de onda para el comando Page program](Comando_page_program.png)
 
@@ -181,12 +181,16 @@ El comando `0xC7` permite borrar completamente el contenido de la memoria, elimi
 ![Formas de onda para el comando Chip Erase](Comando_chip_erase.png)
 
 
-Para cada comando se incluirá:
+### 4.3 Uso práctico de los comandos de escritura y borrado
 
-* Secuencia de utilización.
-* Dirección y datos cuando correspondan.
-* Forma de onda correspondiente.
-* Secuencia de control necesaria antes y después de la operación.
+El uso práctico de estos cuatro comandos comparte una estructura general. Antes de ejecutar cualquier operación de escritura o borrado, se debe enviar el comando `0x06` (Write Enable), el cual habilita la memoria para realizar este tipo de operaciones.
+
+Posteriormente, se envía el comando correspondiente a la operación que se desea realizar: `0x02` (Page Program), `0x20` (Sector Erase), `0xD8` (Block Erase) o `0xC7` (Chip Erase).
+
+Una vez iniciada la operación, la memoria necesita un tiempo para completarla. Durante este proceso, se utiliza el comando `0x05` (Read Status Register) para consultar el estado de la memoria. Este comando puede repetirse hasta verificar que la operación haya finalizado. La información del registro de estado es enviada por la memoria hacia el maestro mediante la línea `MISO`.
+
+![Uso práctico de los comandos de escritura y borrado](Uso_practico_comandos_escritura_borrado.png)
+
 
 ---
 
