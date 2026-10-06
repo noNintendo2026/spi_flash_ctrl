@@ -152,7 +152,7 @@ Esta sección presenta los comandos utilizados para modificar el contenido de la
 | `0xD8`       | Block Erase  | Borra un bloque de 64 KB |
 | `0xC7` | Chip Erase   | Borra toda la memoria    |
 
-### 4.2 Documentación
+La estructura de estas 4 funcionalidades poseen la misma estructura base, se genera la señal de reloj desde el maestro, se cambia el `CS` a `0` para indicarle a la memoria que debe escuchar la información que le llegue, la cual tiene la estructura Opencode->direccion->información (únicamente en el comando `0x02`), y la memoria ejecuta la accion indicada. El uso completo de estos comando se explica mas adelante.
 
 #### 4.2.1 Page Program
 
@@ -187,7 +187,7 @@ El uso práctico de estos cuatro comandos comparte una estructura general. Antes
 
 Posteriormente, se envía el comando correspondiente a la operación que se desea realizar: `0x02` (Page Program), `0x20` (Sector Erase), `0xD8` (Block Erase) o `0xC7` (Chip Erase).
 
-Una vez iniciada la operación, la memoria necesita un tiempo para completarla. Durante este proceso, se utiliza el comando `0x05` (Read Status Register) para consultar el estado de la memoria. Este comando puede repetirse hasta verificar que la operación haya finalizado. La información del registro de estado es enviada por la memoria hacia el maestro mediante la línea `MISO`.
+Una vez iniciada la operación, la memoria necesita un tiempo para completarla. Durante este proceso, se utiliza el comando `0x05` (Read Status Register) para consultar el estado de la memoria. Este comando puede repetirse hasta verificar que la operación haya finalizado. La información del registro de estado es enviada por la memoria hacia el maestro mediante la línea `MISO`. Este proceso se ilustra a continuación.
 
 ![Uso práctico de los comandos de escritura y borrado](Uso_practico_comandos_escritura_borrado.png)
 
