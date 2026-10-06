@@ -68,10 +68,24 @@ La secuencia general de la comunicación es:
 
 ### 1.6 Estructura interna de la memoria 
 
-Como informacion extra, es necesario comprender como se divide la estructura interna de la memoria flash, ya que esto es importante para entender la funcionalidad de las direcciones que se envia en multiples comandos 
+Como informacion extra, es necesario comprender como se divide la estructura interna de la memoria flash, ya que esto es importante para entender la funcionalidad de las direcciones que se envia en multiples comandos.
 
 
-![Jerarquía de memoria](JERARQUIA%20DE%20MEMORIA.png)
+
+![Estructura de memoria](Estructura_memoria%20.png)
+
+
+Típicamente, estas memorias se dividen en 3 niveles, tal como se muestra en la imagen anterior. La memoria completa tiene una capacidad de 16 MiB, la cual se divide en 256 bloques, cada uno de 64 KB. Cada bloque se divide en 16 sectores, cada uno de 4 KB. Cada sector se vuelve a dividir en 16 paginas, cada una de 256 Bytes y estas ultimas se dividen en los ya mencionados 256 Bytes. Una imagen mas representativa se muestra a continuación.
+
+![Estructura detallada de memoria](Estructura_detallada_de_memoria.png)
+
+
+Las direcciones de memoria que se envian desde el maestro hacia el esclavo se dividen en 4 partes (esto se refiere únicamente a la distribución de la información, las direcciones se envian de forma continua bit tras bit).
+
+![Estrcutura de la direccion enviada](Estructura_direcciones.png)
+
+
+
 
 ---
 
@@ -133,12 +147,39 @@ Esta sección presenta los comandos utilizados para modificar el contenido de la
 
 | Código      | Comando      | Función                  |
 | ----------- | ------------ | ------------------------ |
-| `02h`       | Page Program | Programa hasta 256 bytes |
-| `20h`       | Sector Erase | Borra un sector de 4 KB  |
-| `D8h`       | Block Erase  | Borra un bloque de 64 KB |
-| `C7h / 60h` | Chip Erase   | Borra toda la memoria    |
+| `0x02`       | Page Program | Programa hasta 256 bytes |
+| `0x20`       | Sector Erase | Borra un sector de 4 KB  |
+| `0xD8`       | Block Erase  | Borra un bloque de 64 KB |
+| `0xC7` | Chip Erase   | Borra toda la memoria    |
 
 ### 4.2 Documentación
+
+#### 4.2.1 Page Program
+
+El comando 0x02 permite escribir en la memoria hasta un total de 256 Bytes, estos se empezaran a escribir a parir de la direccion dada por el maestro, si los datos enviados hacia el esclavo, llegan al final de una pagina, los siguientes es escribiran al inicio de la misma, y no pasaran a la siguiente pagina.
+
+![Formas de onda para el comando Page program](Comando_page_program.png)
+
+
+
+#### 4.2.2 Sector Erase
+
+El comando `0x20` permite borrar un sector completo de la memoria, correspondiente a un tamaño de 4 KB. El borrado se realiza a partir de la dirección indicada por el maestro, tomando como referencia el sector al que pertenece dicha dirección.
+
+![Formas de onda para el comando Sector Erase](Comando_sector_erase.png)
+
+#### 4.2.3 Block Erase
+
+El comando `0xD8` permite borrar un bloque completo de la memoria, correspondiente a un tamaño de 64 KB. El borrado se realiza a partir de la dirección indicada por el maestro, tomando como referencia el bloque al que pertenece dicha dirección.
+
+![Formas de onda para el comando Block Erase](Comando_block_erase.png)
+
+#### 4.2.4 Chip Erase
+
+El comando `0xC7` permite borrar completamente el contenido de la memoria, eliminando los datos almacenados en todos sus sectores y bloques. A diferencia de los comandos anteriores, no requiere una dirección específica para determinar la zona que será borrada.
+
+![Formas de onda para el comando Chip Erase](Comando_chip_erase.png)
+
 
 Para cada comando se incluirá:
 
