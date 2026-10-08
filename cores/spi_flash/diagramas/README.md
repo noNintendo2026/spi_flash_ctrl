@@ -123,10 +123,11 @@ Esta sección presenta los comandos utilizados para obtener información almacen
 | ------ | --------------------- | ------------------------------- |
 | `03h`  | READ                  | Lectura de datos                |
 | `0Bh`  | FAST READ             | Lectura rápida con ciclos dummy |
-| `3Bh`  | FAST READ DUAL OUTPUT | Lectura mediante dos líneas     |
+
+<!--| `3Bh`  | FAST READ DUAL OUTPUT | Lectura mediante dos líneas     |
 | `BBh`  | FAST READ DUAL I/O    | Lectura Dual I/O                |
 | `6Bh`  | FAST READ QUAD OUTPUT | Lectura mediante cuatro líneas  |
-| `EBh`  | FAST READ QUAD I/O    | Lectura Quad I/O                |
+| `EBh`  | FAST READ QUAD I/O    | Lectura Quad I/O                |-->
 
 ### 3.2 Documentación
 
