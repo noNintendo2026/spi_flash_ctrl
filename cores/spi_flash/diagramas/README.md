@@ -219,8 +219,6 @@ sequenceDiagram
 <img width="947" height="275" alt="image" src="https://github.com/user-attachments/assets/5bb560f6-d2a7-4d1f-8647-7cf5705d2ca2" />
 
 
----
-
 ### 3.6 Preguntas resueltas
 
 #### 3.6.1 ¿Por qué FAST READ es más rápido si **añade** un byte dummy?
