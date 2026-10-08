@@ -200,6 +200,7 @@ Esta sección presenta el **diagrama de flujo general del protocolo SPI para la 
 
 El diagrama de flujo utilizado para representar esta secuencia se encuentra en los archivos gráficos incluidos en este directorio.
 
+![Diagrama de flujo general](Diagrama_flujo_uso_practico.png)
 
 ---
 
