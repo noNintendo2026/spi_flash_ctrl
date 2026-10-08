@@ -137,6 +137,154 @@ Para cada comando se incluirá:
 * Datos obtenidos mediante la lectura.
 * Forma de onda correspondiente.
 
+### 3.3 READ (03h) paso a paso
+
+#### 3.3.1 Secuencia
+
+1. **CS baja.**
+2. Enviar `03h` por MOSI.
+3. Enviar **dirección de 24 bits** (3 bytes, MSB primero).
+4. La Flash empieza a devolver datos por MISO.
+5. **CS sube** al terminar.
+
+#### 3.3.2 Trama (diagrama Mermaid)
+
+```mermaid
+sequenceDiagram
+    participant FPGA as FPGA (Maestro)
+    participant FLASH as Flash (Esclavo)
+
+    Note over FPGA,FLASH: CS baja
+    FPGA->>FLASH: 03h
+    FPGA->>FLASH: A23..A0 (24 bits)
+    FLASH-->>FPGA: D0
+    FLASH-->>FPGA: D1
+    FLASH-->>FPGA: D2
+    FLASH-->>FPGA: D3...
+    Note over FPGA,FLASH: CS sube
+```
+
+#### 3.3.3 Tabla de la trama
+
+| Fase | MOSI (FPGA → Flash) | MISO (Flash → FPGA) |
+|------|---------------------|---------------------|
+| Comando | `03h` | X (no importa) |
+| Dirección | A23..A0 (24 bits) | X (no importa) |
+| Datos | (no se usa) | D0, D1, D2, D3… |
+
+#### 3.3.4 ¿Cuánta información devuelve?
+
+**Ilimitada.** Mientras CS esté bajo, la Flash sigue sacando bytes y la dirección interna avanza sola. Al llegar al final, vuelve al inicio (**wrap around**).
+
+<!--> Cita de clase: *"hay que tener cuidado porque ese se sobrecribe… termina a los 64 espacios y vuelve a escribir el primer
+
+### 3.4 FAST READ (0Bh) paso a paso
+
+#### 3.4.1 Secuencia
+
+1. **CS baja.**
+2. Enviar `0Bh` por MOSI.
+3. Enviar **dirección de 24 bits**.
+4. Enviar **1 byte dummy** (8 ciclos de reloj, MISO ignorado).
+5. La Flash devuelve datos por MISO.
+6. **CS sube.**
+
+#### 3.4.2 Trama (diagrama Mermaid)
+
+```mermaid
+sequenceDiagram
+    participant FPGA as FPGA (Maestro)
+    participant FLASH as Flash (Esclavo)
+
+    Note over FPGA,FLASH: CS baja
+    FPGA->>FLASH: 0Bh
+    FPGA->>FLASH: A23..A0 (24 bits)
+    FPGA->>FLASH: Dummy (8 ciclos)
+    FLASH-->>FPGA: D0
+    FLASH-->>FPGA: D1
+    FLASH-->>FPGA: D2...
+    Note over FPGA,FLASH: CS sube
+```
+
+#### 3.4.3 Tabla de la trama
+
+| Fase | MOSI (FPGA → Flash) | MISO (Flash → FPGA) |
+|------|---------------------|---------------------|
+| Comando | `0Bh` | X (no importa) |
+| Dirección | A23..A0 (24 bits) | X (no importa) |
+| Dummy | (nada) | X (8 ciclos vacíos) |
+| Datos | (no se usa) | D0, D1, D2, D3… |
+
+### 3.5 Formas de onda
+<img width="947" height="275" alt="image" src="https://github.com/user-attachments/assets/5bb560f6-d2a7-4d1f-8647-7cf5705d2ca2" />
+
+
+---
+
+### 3.6 Preguntas resueltas
+
+#### 3.6.1 ¿Por qué FAST READ es más rápido si **añade** un byte dummy?
+
+Porque el byte dummy **no es trabajo extra**, es **tiempo de preparación** para la Flash. La memoria necesita:
+
+- Decodificar la dirección.
+- Acceder a la celda de memoria.
+- Cargar el dato en el registro de salida.
+
+Ese proceso toma tiempo fijo (nanosegundos). El dummy le da ese tiempo al chip.
+
+**La ganancia real viene de la frecuencia de reloj.**
+
+Cálculo para leer **N = 1000 bytes**:
+
+READ normal a 50 MHz:
+
+$$
+T_{read} = \frac{8 + 24 + 8000}{50\times 10^6} = \frac{8032}{50\times 10^6} = 160.6\ \mu s
+$$
+
+FAST READ a 104 MHz:
+
+$$
+T_{fast} = \frac{8 + 24 + 8 + 8000}{104\times 10^6} = \frac{8040}{104\times 10^6} = 77.3\ \mu s
+$$
+
+**FAST READ es ~2 veces más rápido** aunque tenga 8 ciclos extra. El dummy cuesta muy poco y a cambio se duplica la frecuencia.
+
+> **Regla mental:** el byte dummy es la **cuota de entrada** para poder correr el reloj al doble.
+
+#### 3.6.2 ¿Solo se pueden leer 8 bits por comando?
+
+**No.** Cada byte son 8 bits, pero al mantener CS bajo la Flash sigue entregando bytes y **avanza sola la dirección** (modo burst / continuous read).
+
+#### 3.6.3 ¿Toca enviar la trama de nuevo para leer más bits?
+
+**No.** Solo se manda **una vez** comando + dirección. Después se sigue dando reloj y los datos salen consecutivos.
+
+Ejemplo: leer un `uint32_t` desde `0x000100`:
+
+```
+CS baja
+→ 03h
+→ 00h 01h 00h   (dirección)
+→ recibes byte0, byte1, byte2, byte3
+→ unes: dato = (byte0<<24)|(byte1<<16)|(byte2<<8)|byte3
+CS sube
+```
+
+#### 3.6.4 ¿Qué comandos van antes o después?
+
+- **Para leer:** no se necesita comando previo.
+<!-- **Para escribir o borrar:** primero `06h` (Write Enable).
+- **Después de escribir:** revisar con `05h` (Read Status Register) si el chip terminó.-->
+
+<!--### 8.5 ¿Qué diferencia hay con I2S?
+
+En **I2S** la frecuencia de muestreo sí importa (44.2 kHz, 48 kHz). Si se manda el audio más rápido o más lento, se escucha mal. En **SPI** la velocidad no afecta el dato, solo el tiempo que tarda.
+
+> Cita de clase: *"Es la gran diferencia de protocolos SPI frente a todos los demás: el tiempo acá sí importa [en I2S], en los demás no."*-->
+
+
 ---
 
 # 4. Comandos de escritura y borrado
